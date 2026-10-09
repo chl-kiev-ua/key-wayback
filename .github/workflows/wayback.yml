@@ -1,0 +1,58 @@
+name: Архівування КЛЮЧа у Wayback Machine
+
+# Працює на серверах GitHub — не залежить від світла в Києві й доступу до продакшну.
+# Запуск кожні 4 години: якщо під час одного запуску КЛЮЧ без світла,
+# наступний підхопить роботу. Вже свіжі знімки архів не дублює.
+on:
+  schedule:
+    - cron: "17 */4 * * *"   # UTC; хвилина 17 — щоб не потрапляти в пікове «рівно о :00»
+  workflow_dispatch:
+    inputs:
+      max_urls:
+        description: "Скільки сторінок за запуск"
+        default: "150"
+      dry_run:
+        description: "1 = лише показати список, нічого не надсилати"
+        default: "0"
+
+permissions:
+  contents: write   # щоб дописувати журнал archive-log/captures.csv
+
+concurrency:
+  group: wayback
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Надіслати сторінки в архів
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          SITE_URL: https://key.chl.kiev.ua
+          MAX_URLS: ${{ github.event.inputs.max_urls || '150' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
+          MAX_CONCURRENT: "4"
+          IF_NOT_ARCHIVED_WITHIN: "30d"
+          PRIORITY_NOT_ARCHIVED_WITHIN: "1d"
+          TIME_BUDGET_MIN: "50"
+        run: python scripts/wayback_archive.py
+
+      - name: Зберегти журнал у репозиторій
+        if: always()
+        run: |
+          git config user.name  "key-wayback"
+          git config user.email "key-wayback@users.noreply.github.com"
+          git add archive-log/ || true
+          git diff --cached --quiet || git commit -m "Журнал архівування $(date -u +%F\ %H:%M)"
+          git push || true
