@@ -42,3 +42,4 @@ checked_at_utc,status,detail,response_ms
 2026-10-20 04:54,up,HTTP 200,1281
 2026-10-20 13:34,up,HTTP 200,1456
 2026-10-20 20:00,down,ConnectTimeout,30882
+2026-10-20 23:12,down,ConnectTimeout,30209
