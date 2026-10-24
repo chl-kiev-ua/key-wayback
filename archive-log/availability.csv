@@ -58,3 +58,4 @@ checked_at_utc,status,detail,response_ms
 2026-10-24 04:41,down,ConnectTimeout,30847
 2026-10-24 12:43,down,ConnectTimeout,30212
 2026-10-24 18:49,down,ConnectTimeout,30191
+2026-10-24 22:31,down,ConnectTimeout,30341
