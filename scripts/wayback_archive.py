@@ -6,7 +6,9 @@
 
 Логіка одного запуску:
   1. Зібрати список URL: priority-urls.txt → sitemap.xml → (якщо sitemap немає) обхід сайту.
-  2. Впорядкувати: пріоритетні → ще жодного разу не архівовані → найдавніше архівовані.
+  2. Впорядкувати: пріоритетні → ще жодного разу не надіслані → найдавніше надіслані.
+     Порядок — за останньою СПРОБОЮ, не за останнім успіхом: інакше сторінки, на яких
+     архів щоразу помиляється, стоять на початку черги вічно й забирають увесь запуск.
   3. Надіслати до MAX_URLS сторінок у Save Page Now 2 (не більше MAX_CONCURRENT одночасно).
      Сторінки, що вже мають знімок, свіжіший за IF_NOT_ARCHIVED_WITHIN, архів пропускає сам.
   4. Дописати результати в archive-log/captures.csv (журнал = доказ, що й коли збережено).
@@ -28,6 +30,7 @@
 """
 
 import csv
+import json
 import os
 import sys
 import time
@@ -192,14 +195,16 @@ def site_is_up():
 # ---------- 2. Журнал і порядок ----------
 
 def read_log():
-    """url -> дата останнього успішного захоплення (ISO)."""
-    last = {}
+    """(url -> дата останнього успішного захоплення, url -> дата останньої спроби будь-яким статусом)."""
+    last_ok, last_try = {}, {}
     if os.path.exists(LOG_PATH):
         with open(LOG_PATH, encoding="utf-8") as f:
             for row in csv.DictReader(f):
+                url, date = row["url"], row["date_utc"]
+                last_try[url] = max(last_try.get(url, ""), date)
                 if row["status"] in ("success", "already_recent"):
-                    last[row["url"]] = max(last.get(row["url"], ""), row["date_utc"])
-    return last
+                    last_ok[url] = max(last_ok.get(url, ""), date)
+    return last_ok, last_try
 
 
 def append_log(rows):
@@ -212,10 +217,10 @@ def append_log(rows):
         w.writerows(rows)
 
 
-def order(priority, discovered, last):
+def order(priority, discovered, last_try):
     pri = list(dict.fromkeys(priority))
     rest = [u for u in dict.fromkeys(discovered) if u not in set(pri)]
-    rest.sort(key=lambda u: last.get(u, ""))  # ніколи не архівовані ("") — першими
+    rest.sort(key=lambda u: last_try.get(u, ""))  # ще не надіслані ("") — першими
     return pri + rest
 
 
@@ -258,7 +263,8 @@ def submit(url, not_within):
         msg = data.get("message", "") or data.get("status_ext", "")
         if "daily" in msg.lower() or "too-many-daily" in msg:
             raise DailyLimit(msg)
-        return None, msg[:200]
+        # Порожнє пояснення — у журнал сиру відповідь, щоб було видно причину
+        return None, (msg or json.dumps(data, ensure_ascii=False))[:200]
     return None, detail
 
 
@@ -320,7 +326,7 @@ def run(queue, priority_set=frozenset()):
                 ext = s.get("status_ext", "") or s.get("message", "")
                 if "too-many-daily" in ext:
                     stop_submitting = True
-                record(url, "error", detail=ext[:200])
+                record(url, "error", detail=(ext or json.dumps(s, ensure_ascii=False))[:200])
                 del pending[job]
             elif time.time() - t0 > 600:
                 record(url, "error", detail="timeout 10 min")
@@ -348,10 +354,10 @@ def main():
         discovered = crawl(seeds)
     discovered = [n for n in (normalize(u) for u in discovered + seeds) if n]
 
-    last = read_log()
-    ordered = order(priority, discovered, last)
+    last_ok, last_try = read_log()
+    ordered = order(priority, discovered, last_try)
     batch = ordered[:MAX_URLS]
-    never = sum(1 for u in ordered if u not in last)
+    never = sum(1 for u in ordered if u not in last_ok)
     log(f"усього {len(ordered)} URL, ще не архівовано нами: {never}; у цьому запуску: {len(batch)}")
 
     if DRY_RUN:
