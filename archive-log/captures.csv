@@ -6825,3 +6825,32 @@ date_utc,url,status,wayback_url,detail
 2026-10-29,https://key.chl.kiev.ua/institutions/b-v/,error,,error:gateway-timeout
 2026-10-29,https://key.chl.kiev.ua/institutions/tsentralno-ukrainske-vydavnytstvo/,error,,error:gateway-timeout
 2026-10-29,https://key.chl.kiev.ua/institutions/astroprynt/,error,,error:gateway-timeout
+2026-10-29,https://key.chl.kiev.ua/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/search/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/condor/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/tsentr-uchbovoi-literatury/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/vydavnycho-polihrafichnyi-instytut-ntuu-kpi/,error,,"HTTPSConnectionPool(host='web.archive.org', port=443): Max retries exceeded with url: /save (Caused by ConnectTimeoutError(<HTTPSConnection(host='web.archive.org', port=443) at 0x7faff19fe0c0>, 'Connection to web.archive.org timed out. (connect timeout=60)'))"
+2026-10-29,https://key.chl.kiev.ua/institutions/agrafka/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/chernivets-ka-oblasna-biblioteka-dlia-ditei/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/kyivs-kyi-natsional-nyi-universytet-teatru-kino-i-telebachennia-imeni-ivana-karpenka-karoho/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/pidruchnyky-i-posibnyky/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/vovkulaka/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/ivano-frankivska-odb/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/kzk-dnipropetrovs-ka-oblasna-biblioteka-dlia-ditei/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/ukrains-ka-biblioteka-v-tokio/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/kharkivs-ka-derzhavna-akademiia-dyzainu-i-mystetstv/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/magura/,error,,"HTTPSConnectionPool(host='web.archive.org', port=443): Max retries exceeded with url: /save (Caused by ConnectTimeoutError(<HTTPSConnection(host='web.archive.org', port=443) at 0x7faff19feb10>, 'Connection to web.archive.org timed out. (connect timeout=60)'))"
+2026-10-29,https://key.chl.kiev.ua/institutions/maiak/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/vinnyts-ka-oblasna-biblioteka-dlia-ditei-ta-iunatstva-im-i-franka/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/kz-oblasna-biblioteka-dlia-ditei-cherkas-koi-or/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/kirovohrads-ka-oblasna-biblioteka-dlia-ditei-im-t-h-shevchenka/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/poltavs-ka-oblasna-biblioteka-dlia-iunatstva-im-olesia-honchara/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/kz-khersons-ka-oblasna-biblioteka-dlia-ditei-im-dniprovoi-chaiky-khersons-koi-or/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/mykolaivs-ka-oblasna-biblioteka-dlia-ditei/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/kz-zaporiz-ka-oblasna-biblioteka-dlia-ditei-iunyi-chytach-zaporiz-koi-or/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/khmel-nyts-ka-oblasna-biblioteka-dlia-ditei-im-t-h-shevchenka/,error,,
+2026-10-29,https://key.chl.kiev.ua/institutions/zakarpats-ka-oblasna-biblioteka-dlia-ditei-ta-iunatstva/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/prometheus/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/steppelighthouse/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/kraina-mriy/,error,,timeout 10 min
+2026-10-29,https://key.chl.kiev.ua/institutions/odes-ka-oblasna-biblioteka-dlia-ditei-im-v-kataieva/,error,,timeout 10 min
