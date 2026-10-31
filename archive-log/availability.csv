@@ -78,3 +78,4 @@ checked_at_utc,status,detail,response_ms
 2026-10-30 05:53,up,HTTP 200,1420
 2026-10-30 15:04,down,ConnectTimeout,30220
 2026-10-30 20:50,down,ConnectTimeout,30328
+2026-10-31 05:48,down,ConnectTimeout,30253
