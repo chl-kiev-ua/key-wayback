@@ -89,3 +89,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-02 18:26,down,ConnectTimeout,30208
 2026-11-03 02:22,down,ConnectTimeout,30296
 2026-11-03 11:58,down,ConnectTimeout,30234
+2026-11-03 19:31,down,ConnectTimeout,30631
