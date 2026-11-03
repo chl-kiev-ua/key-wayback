@@ -87,3 +87,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-01 20:32,down,ConnectTimeout,30199
 2026-11-02 06:12,down,ConnectTimeout,30253
 2026-11-02 18:26,down,ConnectTimeout,30208
+2026-11-03 02:22,down,ConnectTimeout,30296
