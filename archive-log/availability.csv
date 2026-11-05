@@ -95,3 +95,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-04 19:48,down,ConnectTimeout,31255
 2026-11-05 00:55,down,ConnectTimeout,30468
 2026-11-05 12:25,down,ConnectTimeout,30279
+2026-11-05 22:01,up,HTTP 200,2483
