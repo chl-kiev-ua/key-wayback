@@ -109,3 +109,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-09 06:39,up,HTTP 200,2675
 2026-11-09 18:50,up,HTTP 200,1407
 2026-11-10 02:45,up,HTTP 200,1412
+2026-11-10 12:42,down,ConnectTimeout,30658
