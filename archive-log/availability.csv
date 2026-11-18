@@ -131,3 +131,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-17 02:57,up,HTTP 200,1018
 2026-11-17 13:29,up,HTTP 200,1010
 2026-11-17 23:31,up,HTTP 200,2236
+2026-11-18 07:33,down,ConnectTimeout,30698
