@@ -148,3 +148,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-24 02:55,down,ConnectTimeout,30276
 2026-11-24 14:54,up,HTTP 200,1181
 2026-11-25 00:48,down,ConnectTimeout,30289
+2026-11-25 14:27,up,HTTP 200,1138
