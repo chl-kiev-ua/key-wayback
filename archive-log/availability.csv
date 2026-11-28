@@ -155,3 +155,4 @@ checked_at_utc,status,detail,response_ms
 2026-11-27 13:54,up,HTTP 200,741
 2026-11-28 00:04,down,ConnectTimeout,30397
 2026-11-28 07:54,down,ConnectTimeout,30202
+2026-11-28 16:55,down,ConnectTimeout,30670
